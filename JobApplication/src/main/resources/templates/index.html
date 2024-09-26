@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings | JOBZY</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #343a40 0%, #007bff 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            border-bottom: 5px solid #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .hero-section h1 {
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .hero-section .btn-primary {
+            background-color: #007bff;
+            border: none;
+            font-size: 1.125rem;
+        }
+        .hero-section .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            padding-top: 2rem;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #007bff;
+        }
+        .card-subtitle {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        .card-text {
+            font-size: 0.9rem;
+            color: #495057;
+        }
+        .card-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .card-link:hover {
+            text-decoration: underline;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            padding: 2rem;
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            border-top: 2px solid #007bff;
+        }
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Fragment -->
+<div th:replace="~{layout :: header}"></div>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1>Job Listings</h1>
+        <p>Explore the latest job opportunities and find your next career move.</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="job : ${jobs}">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${job.title}">Job Title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${job.location}">Location</h6>
+                    <p class="card-text" th:text="${job.description}">Job Description</p>
+                    <p class="card-text">
+                        <strong>Salary Range:</strong>
+                        <span th:text="${job.minSalary} + ' - ' + ${job.maxSalary}">Salary Range</span>
+                    </p>
+                    <a th:href="@{/companies/details/{id}(id=${job.company.id})}" class="card-link" th:text="${job.company.name}">Company Name</a>
+                    <br><br>
+                    <a th:href="@{/jobseeker/apply/{id}(id=${job.id})}" class="btn btn-primary mt-3">Easy Apply</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Fragment -->
+<div th:replace="~{layout :: footer}"></div>
+
+<!-- Bootstrap JS and Popper.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</body>
+</html>

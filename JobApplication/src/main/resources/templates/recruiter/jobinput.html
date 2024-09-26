@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Any Job | JOBZY</title>
+    <!-- Bootstrap 4.5 and Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #007bff;
+            text-align: center;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        .form-control {
+            border-radius: 50px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            border: 1px solid #ced4da;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row .col-md-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0056b3, #004494);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .form-section-title {
+            font-size: 1.5rem;
+            color: #007bff;
+            font-weight: 600;
+            margin-top: 2rem;
+        }
+
+        hr {
+            border-top: 2px solid #007bff;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .form-control {
+                padding: 0.75rem 1rem;
+            }
+
+            .btn-primary {
+                font-size: 1rem;
+                padding: 0.6rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{layout :: header}"></div>
+
+<div class="container">
+    <h2>Create Job Listing</h2>
+
+    <form th:action="@{/recruiter/job-process}" th:object="${job}" method="post">
+        <!-- Job Title -->
+        <div class="form-group">
+            <label for="title">Job Title</label>
+            <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="Enter job title" required>
+        </div>
+
+        <!-- Job Description -->
+        <div class="form-group">
+            <label for="description">Job Description</label>
+            <textarea id="description" th:field="*{description}" class="form-control" placeholder="Enter job description" rows="4" required></textarea>
+        </div>
+
+        <!-- Salary Range -->
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="minSalary">Minimum Salary</label>
+                <input type="number" id="minSalary" th:field="*{minSalary}" class="form-control" placeholder="Enter minimum salary" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="maxSalary">Maximum Salary</label>
+                <input type="number" id="maxSalary" th:field="*{maxSalary}" class="form-control" placeholder="Enter maximum salary" required>
+            </div>
+        </div>
+
+        <!-- Location -->
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" th:field="*{location}" class="form-control" placeholder="Enter job location" required>
+        </div>
+
+        <hr>
+
+        <!-- Company Name -->
+        <h4 class="form-section-title">Company Details</h4>
+        <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" th:field="*{company.name}" class="form-control" placeholder="Enter company name" required>
+        </div>
+
+        <!-- Company Description -->
+        <div class="form-group">
+            <label for="companyDescription">Company Description</label>
+            <textarea id="companyDescription" th:field="*{company.description}" class="form-control" placeholder="Enter company description" rows="4" required></textarea>
+        </div>
+
+        <!-- Recruiter Name -->
+        <div class="form-group">
+            <label for="recruiterName">Recruiter Name</label>
+            <input type="text" id="recruiterName" th:field="*{company.recruiterName}" class="form-control" placeholder="Enter recruiter name" required>
+        </div>
+
+        <!-- Recruiter Contact -->
+        <div class="form-group">
+            <label for="recruiterContact">Recruiter Contact</label>
+            <input type="text" id="recruiterContact" th:field="*{company.recruiterContact}" class="form-control" placeholder="Enter recruiter contact number" required>
+        </div>
+
+        <!-- Recruiter Email -->
+        <div class="form-group">
+            <label for="recruiterEmail">Recruiter Email</label>
+            <input type="email" id="recruiterEmail" th:field="*{company.recruiterEmail}" class="form-control" placeholder="Enter recruiter email" required>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Save Job Listing
+            </button>
+        </div>
+    </form>
+</div>
+
+<div th:replace="~{layout :: footer}"></div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Applications</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Job Applications</h1>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Application ID</th>
+            <th>Job Title</th>
+            <th>Applicant Name</th>
+            <th>Email</th>
+            <th>Position Applied For</th>
+            <th>Cover Letter</th>
+            <th>Resume</th>
+            <th>Application Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="app : ${applications}">
+            <td th:text="${app.id}"></td>
+            <td th:text="${app.job.title}"></td>
+            <td th:text="${app.fullName}"></td>
+            <td th:text="${app.email}"></td>
+            <td th:text="${app.positionAppliedFor}"></td>
+            <td th:text="${app.coverLetter}"></td>
+            <!-- Add the download link for the resume -->
+            <td>
+                <a th:href="@{/recruiter/view-application/{applicationId}/resume(applicationId=${app.id})}" target="_blank">
+                    Download Resume
+                </a>
+            </td>
+            <td th:text="${app.applicationDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

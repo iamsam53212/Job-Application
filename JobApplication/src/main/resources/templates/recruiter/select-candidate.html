@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Candidate</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Select a Candidate for Job Offer</h1>
+    <form th:action="@{/recruiter/listing/delete/{id}/confirm(id=${listingId})}" method="post">
+        <div class="form-group">
+            <label>Select the candidate to offer the job:</label>
+            <select name="selectedEmail" class="form-control" required>
+                <option value="" disabled selected>Select a candidate</option>
+                <option th:each="applicant : ${applicants}"
+                        th:value="${applicant.email}"
+                        th:text="${applicant.fullName + ' (' + applicant.email + ')'}">
+                </option>
+            </select>
+        </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> <!-- CSRF Token -->
+        <button type="submit" class="btn btn-primary">Confirm and Send Emails</button>
+    </form>
+</div>
+</body>
+</html>

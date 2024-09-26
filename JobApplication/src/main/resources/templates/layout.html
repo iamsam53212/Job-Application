@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>JOBZY</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        /* Custom Styles for Header and Footer */
+        .navbar {
+            background-color: #343a40; /* Dark background color */
+            padding: 1rem; /* Increase the size of the navbar */
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 2rem; /* Increase font size */
+            color: white !important;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            margin-right: 1.5rem;
+            font-weight: 500;
+            font-size: 1.25rem; /* Increase font size */
+        }
+        .navbar-nav .nav-link.active {
+            border-bottom: 2px solid #ffdd57; /* Highlight active link */
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ffdd57 !important;
+        }
+        .footer {
+            background-color: #212529; /* Dark background color */
+            color: white;
+            padding: 2rem 0;
+        }
+        .footer h5 {
+            color: #ffdd57;
+            margin-bottom: 1.5rem;
+        }
+        .footer a {
+            color: #ccc; /* Darker color for footer links */
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ffdd57;
+            text-decoration: underline;
+        }
+        .footer .social-icons a {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .footer .social-icons a:hover {
+            color: #ffdd57;
+        }
+        .footer-bottom {
+            background-color: #000; /* Darker footer bottom */
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .contact-details p, .contact-details a {
+            color: #ccc !important; /* Dark color for contact details */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div th:fragment="header">
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/home">
+                    JOBZY
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/jobseeker/home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/jobseeker/jobs">Job Listing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/service">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/logout}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<!-- Footer -->
+<div th:fragment="footer">
+    <br>
+    <br>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">About JOBZY</h5>
+                    <p>
+                        JOBZY is dedicated to connecting employers with job seekers to foster successful careers and thriving businesses. Our mission is to make the job search and recruitment process simple and effective.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="/jobseeker/home">Home</a>
+                        </li>
+                        <li>
+                            <a href="/jobseeker/jobs">Job Listing</a>
+                        </li>
+                        <li>
+                            <a href="/service">Services</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-4 mb-md-0 contact-details">
+                    <h5 class="text-uppercase">Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <p><i class="fas fa-map-marker-alt"></i><a href="https://www.google.com/maps/search/?api=1&query=1234+Street+Name,+City,+Country" target="_blank"> 1023 Boulevard Street, Oklahoma, United States</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-phone"></i><a href="tel:+1234567890"> +1 589 168 2406</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-envelope"></i><a href="mailto:email@example.com"> customerservice@jobzy.com</a></p>
+                        </li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 JOBZY. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Bootstrap JS and Font Awesome -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

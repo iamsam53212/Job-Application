@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | JOBZY</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General body styling */
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #f8f9fa !important;
+        }
+
+        /* Login form styling */
+        .h-custom {
+            margin-top: 50px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: none;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: none;
+            height: 45px;
+            padding-left: 15px;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary {
+            background: #007bff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        /* Social Button Styling */
+        .social-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 5px 0;
+        }
+
+        .social-btn-google {
+            background-color: #DB4437; /* Google Red */
+        }
+
+        .social-btn-github {
+            background-color: #333; /* GitHub Black */
+        }
+
+        .social-btn:hover {
+            opacity: 0.8;
+        }
+
+        .form-label {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .small {
+            color: #eaeaea; /* Lighter color for small text */
+        }
+
+        /* Footer section */
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            color: #ffffff;
+        }
+
+        /* Improve visibility of links */
+        .link-danger {
+            color: #ff4444;
+            font-weight: bold;
+        }
+
+        .link-danger:hover {
+            color: #ff9999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card {
+                padding: 20px;
+            }
+
+            .btn-primary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid rounded" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <div class="card">
+                    <form th:action="@{/login-process}" method="post">
+                        <div class="d-flex flex-row align-items-center justify-content-center mb-4">
+                            <p class="lead fw-normal mb-0 me-3">Sign in with</p>
+                        </div>
+
+                        <a th:href=@{/oauth2/authorization/google} class="social-btn social-btn-google">
+                            <i class="fab fa-google"></i>
+                            <span class="mx-2">Continue with Google</span>
+                        </a>
+
+                        <a th:href=@{/oauth2/authorization/github} class="social-btn social-btn-github">
+                            <i class="fab fa-github"></i>
+                            <span class="mx-2">Continue with GitHub</span>
+                        </a>
+
+                        <div class="divider d-flex align-items-center my-4">
+                            <p class="text-center fw-bold mx-3 mb-0">Or</p>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email"
+                                   name="email"
+                                   id="email"
+                                   class="form-control form-control-lg"
+                                   placeholder="Enter a valid email address"/>
+                            <label class="form-label" for="email">Email address</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-3">
+                            <input type="password"
+                                   name="password"
+                                   id="password"
+                                   class="form-control form-control-lg"
+                                   placeholder="Enter password"/>
+                            <label class="form-label" for="password">Password</label>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
+                                <a href="/signup" class="link-danger">Register</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center">
+    <div class="container">
+        <p>&copy; 2024 JOBZY. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

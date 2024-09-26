@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | JOBZY</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #343a40 0%, #007bff 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            border-bottom: 5px solid #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .hero-section h1 {
+            margin-bottom: 1rem;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .hero-section .btn-primary {
+            background-color: #007bff;
+            border: none;
+            font-size: 1.125rem;
+        }
+        .hero-section .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .feature-icons i {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+        .features {
+            padding: 3rem 0;
+        }
+        .feature-item {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+        .feature-item p {
+            font-size: 1rem;
+            color: #555;
+        }
+        .call-to-action {
+            background: #007bff;
+            color: white;
+            padding: 3rem;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 2rem 0;
+        }
+        .call-to-action h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .call-to-action p {
+            font-size: 1.25rem;
+        }
+        .call-to-action .btn-light {
+            background-color: #f8f9fa;
+            color: #007bff;
+            border: none;
+        }
+        .call-to-action .btn-outline-light {
+            border: 2px solid #f8f9fa;
+            color: #f8f9fa;
+        }
+        .call-to-action .btn-light:hover,
+        .call-to-action .btn-outline-light:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        footer {
+            padding: 2rem;
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            border-top: 2px solid #007bff;
+        }
+        footer a {
+            color: #007bff;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Fragment -->
+<div th:replace="~{layout :: header}"></div>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1>Welcome to JOBZY</h1>
+        <p>Your gateway to connecting with the best job opportunities and top talent.</p>
+        <a href="#" class="btn btn-primary" th:href="@{/jobseeker/jobs}">Browse Job Listings</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 feature-item">
+                <div class="feature-icons">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Search Jobs</h3>
+                <p>Find job listings that match your skills and interests.</p>
+            </div>
+            <div class="col-md-4 feature-item">
+                <div class="feature-icons">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Post Jobs</h3>
+                <p>Recruiters can post new job listings to attract top candidates.</p>
+            </div>
+            <div class="col-md-4 feature-item">
+                <div class="feature-icons">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Manage Applications</h3>
+                <p>Track and manage job applications with ease.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="call-to-action">
+    <div class="container">
+        <h2>Ready to Take the Next Step?</h2>
+        <p>Sign up today to start exploring job opportunities or post your job listings.</p>
+        <a href="#" class="btn btn-light" th:href="@{/signup}">Sign Up</a>
+        <a href="#" class="btn btn-outline-light ms-2" th:href="@{/login}">Login</a>
+    </div>
+</section>
+
+<!-- Footer Fragment -->
+<div th:replace="~{layout :: footer}"></div>
+
+<!-- Bootstrap JS and Popper.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</body>
+</html>
